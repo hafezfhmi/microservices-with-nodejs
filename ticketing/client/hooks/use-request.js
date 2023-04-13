@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { response } from "express";
 
 const useRequest = ({ url, method, body }) => {
   const [errors, setErrors] = useState(null);
 
   const doRequest = async () => {
     try {
+      setErrors(null);
       const response = await axios[method](url, body);
       return response.data;
     } catch (error) {
