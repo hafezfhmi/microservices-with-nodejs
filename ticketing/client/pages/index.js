@@ -1,14 +1,15 @@
 import React from "react";
+import axios from "axios";
 
-const Index = ({ color }) => {
-  console.log("I am in the component", color);
+const Index = ({ currentUser }) => {
+  console.log(currentUser);
   return <div>Landing Page</div>;
 };
 
-Index.getInitialProps = () => {
-  console.log("I am on the server");
+Index.getInitialProps = async () => {
+  const response = await axios.get("/api/users/currentuser");
 
-  return { color: "red" };
+  return response.data;
 };
 
 export default Index;
