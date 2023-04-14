@@ -2,14 +2,17 @@ import React from "react";
 import axios from "axios";
 
 const Index = ({ currentUser }) => {
-  console.log(currentUser);
   return <div>Landing Page</div>;
 };
 
 Index.getInitialProps = async () => {
-  const response = await axios.get("/api/users/currentuser");
+  if (typeof window === "undefined") {
+    // we are on the server!
+  } else {
+    // we are on the browser!
+  }
 
-  return response.data;
+  return {};
 };
 
 export default Index;
