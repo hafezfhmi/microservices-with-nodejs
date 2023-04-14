@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import buildClient from "../api/build-client";
 
 const Index = ({ currentUser }) => {
   console.log(currentUser);
@@ -7,21 +7,11 @@ const Index = ({ currentUser }) => {
   return <div>Landing Page</div>;
 };
 
-Index.getInitialProps = async ({ req }) => {
-  if (typeof window === "undefined") {
-    const { data } = await axios.get(
-      "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser",
-      {
-        headers: req.headers,
-      }
-    );
-    return data;
-  } else {
-    const { data } = await axios.get("/api/users/currentuser");
-    return data;
-  }
+Index.getInitialProps = async (context) => {
+  const client = buildClient(context);
+  const { data } = await client.get("/api/users/currentuser");
 
-  return {};
+  return data;
 };
 
 export default Index;
