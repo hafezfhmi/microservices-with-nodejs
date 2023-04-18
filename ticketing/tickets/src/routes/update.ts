@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { sanitizeBody } from "express-validator";
+import { body } from "express-validator";
 import {
   validateRequest,
   NotFoundError,
@@ -18,6 +18,10 @@ router.put(
 
     if (!ticket) {
       throw new NotFoundError();
+    }
+
+    if (ticket.userId !== req.currentUser!.id) {
+      throw new NotAuthorizedError();
     }
 
     res.send(ticket);
