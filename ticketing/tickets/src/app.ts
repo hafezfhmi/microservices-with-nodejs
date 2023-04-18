@@ -8,7 +8,7 @@ import {
   currentUser,
 } from "@hafezfhmi-dev/common";
 
-import { createTicketRouter } from "./routes/__test__/new";
+import { createTicketRouter } from "./routes/new";
 
 const app = express();
 app.set("trust proxy", true);
