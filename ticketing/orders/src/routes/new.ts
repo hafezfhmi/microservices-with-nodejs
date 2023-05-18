@@ -19,7 +19,7 @@ router.post(
   "/api/orders",
   requireAuth,
   [
-    body("ticket")
+    body("ticketId")
       .not()
       .isEmpty()
       .custom((input: string) => mongoose.Types.ObjectId.isValid(input))
