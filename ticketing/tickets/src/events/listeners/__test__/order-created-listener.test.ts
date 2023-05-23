@@ -38,19 +38,19 @@ const setup = async () => {
   return { listener, ticket, data, msg };
 };
 
-// it("sets the userId of the ticket", async () => {
-//   const { listener, ticket, data, msg } = await setup();
+it("sets the userId of the ticket", async () => {
+  const { listener, ticket, data, msg } = await setup();
 
-//   await listener.onMessage(data, msg);
+  await listener.onMessage(data, msg);
 
-//   const updatedTicket = await Ticket.findById(ticket.id);
+  const updatedTicket = await Ticket.findById(ticket.id);
 
-//   expect(updatedTicket!.orderId).toEqual(data.id);
-// });
+  expect(updatedTicket!.orderId).toEqual(data.id);
+});
 
-// it("acks the message", async () => {
-//   const { listener, ticket, data, msg } = await setup();
-//   await listener.onMessage(data, msg);
+it("acks the message", async () => {
+  const { listener, ticket, data, msg } = await setup();
+  await listener.onMessage(data, msg);
 
-//   expect(msg.ack).toHaveBeenCalled();
-// });
+  expect(msg.ack).toHaveBeenCalled();
+});
