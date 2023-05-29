@@ -1,5 +1,4 @@
 import React from "react";
-import buildClient from "../api/build-client";
 
 const Index = ({ currentUser }) => {
   return currentUser ? (
@@ -9,11 +8,8 @@ const Index = ({ currentUser }) => {
   );
 };
 
-Index.getInitialProps = async (context) => {
-  const client = buildClient(context);
-  const { data } = await client.get("/api/users/currentuser");
-
-  return data;
+Index.getInitialProps = async (context, client, currentUser) => {
+  return {};
 };
 
 export default Index;
