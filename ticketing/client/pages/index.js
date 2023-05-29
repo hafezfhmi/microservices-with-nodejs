@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const Index = ({ currentUser, tickets }) => {
   const ticketList = tickets.map((ticket) => {
@@ -6,6 +7,11 @@ const Index = ({ currentUser, tickets }) => {
       <tr key={ticket.id}>
         <td>{ticket.title}</td>
         <td>{ticket.price}</td>
+        <td>
+          <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
+            View
+          </Link>
+        </td>
       </tr>
     );
   });
@@ -18,6 +24,7 @@ const Index = ({ currentUser, tickets }) => {
           <tr>
             <th>Title</th>
             <th>Price</th>
+            <th>Link</th>
           </tr>
         </thead>
         <tbody>{ticketList}</tbody>
